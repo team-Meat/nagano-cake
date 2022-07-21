@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_21_065427) do
+ActiveRecord::Schema.define(version: 2022_07_21_090511) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,4 +36,22 @@ ActiveRecord::Schema.define(version: 2022_07_21_065427) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_enabled", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shippings", force: :cascade do |t|
+    t.integer "public_id"
+    t.string "receive_name", null: false
+    t.string "postal_code", null: false
+    t.string "street_address", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["public_id"], name: "index_shippings_on_public_id"
+  end
+
+  add_foreign_key "shippings", "publics"
 end
