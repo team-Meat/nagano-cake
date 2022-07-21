@@ -13,5 +13,10 @@ devise_for :customers,skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+#cart_items
+scope module: :public do
+  resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+  resources :sessions, only: [:new, :create, :destroy]
+end
 end
