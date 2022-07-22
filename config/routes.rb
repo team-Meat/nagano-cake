@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # devise_for :admins
-  # devise_for :customers
   
 # 顧客用
 # URL /customers/sign_in ...
@@ -17,6 +15,5 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 #cart_items
 scope module: :public do
   resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
-  resources :sessions, only: [:new, :create, :destroy]
 end
 end
