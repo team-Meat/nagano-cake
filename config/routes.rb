@@ -14,11 +14,18 @@ scope module: :public do
    # 配送先
    resources :shippings, only: [:index, :create, :edit, :update, :destroy]
 
-
 end
 
 namespace :admin do
-  resources :genres, only: [:create, :index, :update, :edit]
+  root :to =>"homes#top"
+   # ジャンル
+   resources :genres, only: [:create, :index, :update, :edit]
+
+   # 会員
+    resources :customers, only: [:show, :index, :edit, :update, :destroy]
+
+   # 注文
+   resources :orders, only: [:show, :index, :update, :destroy]
 
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
