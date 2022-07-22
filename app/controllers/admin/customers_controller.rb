@@ -6,7 +6,7 @@ class Admin::CustomersController < ApplicationController
   end
 
   def index
-    @customers = Customer.with_deleted
+    @customers = Customer.all
   end
 
   def edit

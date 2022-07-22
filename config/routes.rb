@@ -18,6 +18,7 @@ end
 
 namespace :admin do
   root :to =>"homes#top"
+
    # ジャンル
    resources :genres, only: [:create, :index, :update, :edit]
 
