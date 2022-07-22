@@ -15,6 +15,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
   resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
+  resources :orders, only: [:index]
   end
    get 'public/homes/top'
    get 'public/homes/about'
