@@ -15,10 +15,16 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
   resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
-  resources :orders, only: [:index]
+  #resources :orders, only: [:index]
   end
-   get 'public/homes/top'
-   get 'public/homes/about'
-   get 'public/registrations/new'
+  get'public/customers/confirm' => 'public/customers/confirm'
+
+  scope module: :admin do
+  resources :items, only: [:show,:edit,:update,:index]
+  end
+   get'public/homes/top'
+   get'public/homes/about'
+
+
 
 end
