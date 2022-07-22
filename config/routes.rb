@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  # devise_for :admins
-  # devise_for :customers
-  
+
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -14,4 +12,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  scope module: :public do
+  resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
+  end
+   get 'public/homes/top'
+   get 'public/homes/about'
+   get 'public/registrations/new'
+
 end
