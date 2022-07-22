@@ -6,7 +6,8 @@
   		  <tr>
          <%= image_tag @item.image(100,100)%>
          <% @item..name%>
-         <% @item. introduction %>
+         <% @item. introduction %>    <%= f.select :quantity, [["選択肢１", "実際にDBに保存させる内容"], ["選択肢２", "実際にDBに保存させる内容"]], include_blank: "選択して下さい" %>
+         <%= f.submit 'カートに入れる'%>
         </tr>
       </div>
     </div>
