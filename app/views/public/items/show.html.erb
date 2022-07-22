@@ -1,15 +1,20 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-3'>
-       <div class='col-md-8 offset-md-1'>
-  		<table class='table'>
-  		  <tr>
-         <%= image_tag @item.image(100,100)%>
-         <% @item..name%>
-         <% @item. introduction %>    <%= f.select :quantity, [["選択肢１", "実際にDBに保存させる内容"], ["選択肢２", "実際にDBに保存させる内容"]], include_blank: "選択して下さい" %>
-         <%= f.submit 'カートに入れる'%>
-        </tr>
-      </div>
-    </div>
+<div class="row">
+  <div class="col-xs-6">
+    <%= image_tag @item.product_image, size: "200x200" %>
+  <div>
+  <div class="col-xs-6">
+    <% @item..name%>
+    <% @item. introduction %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-2">
+  </div>
+  <div class="col-xs-5">
+     <%= f.select :quantity, [["1個", "1"], ["2個", "2"], ["2個", "2"], ["3個", "3"], ["4個", "4"], ["5個", "5"]], include_blank: "個数選択" %>
+  </div>
+  <div class="col-xs-5">
+   <%= f.submit 'カートに入れる', class:"btn btn-primary" %>
+   <% end %>
   </div>
 </div>
