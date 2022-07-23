@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 2022_07_22_094132) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+
+ActiveRecord::Schema.define(version: 2022_07_22_091203) do
+
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,6 +53,14 @@ ActiveRecord::Schema.define(version: 2022_07_22_094132) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "customer_id"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -89,4 +100,51 @@ ActiveRecord::Schema.define(version: 2022_07_22_094132) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_enabled", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.text "explanation", null: false
+    t.string "image_id", null: false
+    t.boolean "is_enabled", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "receive_name", null: false
+    t.string "postal_code", null: false
+    t.string "street_address", null: false
+    t.integer "postage", default: 800, null: false
+    t.integer "payment", default: 0, null: false
+    t.integer "total_price", null: false
+    t.integer "order_status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
+  create_table "shippings", force: :cascade do |t|
+    t.integer "public_id"
+    t.string "receive_name", null: false
+    t.string "postal_code", null: false
+    t.string "street_address", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["public_id"], name: "index_shippings_on_public_id"
+  end
+
+  add_foreign_key "items", "genres"
+  add_foreign_key "shippings", "publics"
+
 end
