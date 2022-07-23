@@ -14,6 +14,16 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       ## Rememberable
       t.datetime :remember_created_at
 
+
+      t.string:last_name
+      t.string:first_name
+      t.string:last_name_kana
+      t.string:first_name_kana
+      t.string:postcode
+      t.string:address
+      t.string:phone_number
+
+
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at

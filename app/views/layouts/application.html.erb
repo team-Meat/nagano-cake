@@ -33,8 +33,12 @@
                会員登録
               <% end %>
 
+               <%= link_to customer_path(current_customer),class: 'text-light' do %>
+               マイページ
+               <% end %>
+              </li>
 
-             <%= link_to destroy_customer_session_path,class: 'text-light' do %>
+             <%= link_to destroy_customer_session_path,method: :delete,class: 'text-light' do %>
                ログアウト
               <% end %>
               </li>

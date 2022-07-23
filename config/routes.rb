@@ -14,7 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   scope module: :public do
-  resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
+  resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create]
   #resources :orders, only: [:index]
   end
   get'public/customers/confirm' => 'public/customers/confirm'

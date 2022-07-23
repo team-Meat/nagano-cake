@@ -20,15 +20,13 @@
 
      <div class ="form-group">
       <label for ="last_name_kana">セイ</label>
-      <p><%= f.text_field :last_name_kana %></p>
+      <p><%= f.text_field :first_name_kana %></p>
      </div>
 
      <div class ="form-group">
       <label for ="last_name_kana">メイ</label>
       <p><%= f.text_field :last_name_kana %></p>
      </div>
-
-
 
     <div class ="form-group">
       <label for ="email">email</label>
@@ -47,8 +45,14 @@
     </div>
 
     <div class ="form-group">
+      <label for ="phone_number">電話番号</label>
+      <p><%= f.text_field :phone_number %></p>
+    </div>
+
+
+    <div class ="form-group">
       <label for ="is_deleted">会員ステータス</label>
-      <p><%= f.text_field :is_deleted %></p>
+      <p>会員</p>
     </div>
 
     <p><%= f.submit '登録',class: "btn btn-secondary" %></p>
