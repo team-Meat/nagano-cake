@@ -1,4 +1,4 @@
-<h2>Log in</h2>
+<h2>会員 Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -19,8 +19,27 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン", class: "btn btn-primary" %>
   </div>
+  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "=> パスワードを忘れた方はこちら", new_password_path(resource_name) %>
+  <br><br>
+  <% end %>
 <% end %>
 
-<%= render "admin/shared/links" %>
+<div class="row">
+  <div class="col-xs-5">
+    <h4>登録がお済でない方</h4>
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <%= link_to "こちら", new_registration_path(resource_name) %>
+      <strong>から新規登録を行ってください。</strong>
+    <% end %>
+  </div>
+  <div class="col-xs-5">
+    <h4>管理者の方</h4>
+    <%= link_to "こちら", new_admin_session_path %>
+    <strong>からログインしてください</strong>
+  </div>
+</div>
+
+<!--<%#= render "admin/shared/links" %>-->
