@@ -12,6 +12,17 @@ tanaka.furi
   </head>
 
   <body>
+    <header class="navbar navbar-fixed-top">
+      <div class="container">
+        <% if customer_signed_in? %>
+            <%= render 'layouts/header_customer' %>
+        <% elsif admin_signed_in? %>
+          <%= render 'layouts/header_admin' %>
+        <% else %>
+          <%= render 'layouts/header_logout' %>
+        <% end %>
+      </div>
+    </header>
     <main>
       <div class="container main-container">
         <% flash.each do |message_type, message| %>

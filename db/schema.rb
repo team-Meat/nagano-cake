@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_22_043430) do
+ActiveRecord::Schema.define(version: 2022_07_22_091203) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 2022_07_22_043430) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.text "explanation", null: false
+    t.string "image_id", null: false
+    t.boolean "is_enabled", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "receive_name", null: false
@@ -67,5 +79,6 @@ ActiveRecord::Schema.define(version: 2022_07_22_043430) do
     t.index ["public_id"], name: "index_shippings_on_public_id"
   end
 
+  add_foreign_key "items", "genres"
   add_foreign_key "shippings", "publics"
 end

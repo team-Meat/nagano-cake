@@ -28,6 +28,9 @@ namespace :admin do
    # 注文
    resources :orders, only: [:show, :index, :update, :destroy]
 
+   # 商品
+    resources :items, only: [:new, :show, :create, :edit, :index, :update]
+
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
