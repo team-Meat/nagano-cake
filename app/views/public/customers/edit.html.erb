@@ -1,8 +1,9 @@
 <div class ="container">
   <div class ="row">
     <div class ="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-<h2>登録情報</h2>
-<%= form_with model: @customer,url: customer_path(current_customer) ,method: :patch do |f| %>
+
+<h3>登録情報</h3>
+<%= form_with model: @customer,url: customer_path(@customer.id) ,method: :patch do |f| %>
 
 
     <div class ="form-group">
@@ -54,13 +55,13 @@
     <% end %>
 
 
-   <h3>退会しますか？</h3>
+    <p>退会しますか？</p>
 
-    <%= link_to public_customers_confirm_path,class:"btn btn-outline-secondary btn-block" do %>
+    <%= link_to public_customers_confirm_path,class:"btn btn-outline-secondary " do %>
     はい
     <% end %>
 
-    <%= link_to customer_path,class:"btn btn-outline-secondary btn-block" do %>
+    <%= link_to customer_path,class:"btn btn-outline-secondary " do %>
     いいえ
     <% end %>
   </div>
