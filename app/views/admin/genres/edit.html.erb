@@ -1,6 +1,6 @@
 <div class="row">
 <h2 class="genre-edit-head">ジャンル編集</h2>
-<%= form_for(@genre, url: admins_genre_path(@genre),html: {method: "patch"}) do |genre| %>
+<%= form_for(@genre, url: admin_genre_path(@genre),html: {method: "patch"}) do |genre| %>
 	<%= genre.text_field :name %>
 	<label>
 	<%= genre.radio_button :is_enabled, :true %>有効

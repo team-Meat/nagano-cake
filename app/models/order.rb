@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :product_orders, dependent: :destroy
+  has_many :item_orders, dependent: :destroy
   belongs_to :customer
 
   enum payment: {
