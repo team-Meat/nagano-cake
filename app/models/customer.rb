@@ -12,4 +12,8 @@ class Customer < ApplicationRecord
           validate :address
           validate :phone_number
 
+   def active_for_authentication?
+    super && (is_deleted == false)
+   end
+
 end

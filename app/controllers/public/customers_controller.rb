@@ -17,20 +17,15 @@ class Public::CustomersController < ApplicationController
      end
   end
 
-   def destroy
-   @customer =Customer.find(params[:id]) # データ（レコード）を1件取得
-    if@customer.destroy  # データ（レコード）を削除
-     redirect_to public_homes_path  # リダイレクト
-    end
+   def withdrawal
+       @user = User.find(params[:id])
+        # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+        @user.update(is_deleted: true)
+        reset_session
+        flash[:notice] = "退会処理を実行いたしました"
+        redirect_to public_homes_top_path
    end
 
-
-#   def create
-#     @customer = Customer.new(customer_params)
-#     if @customer.save
-#       redirect_to customer_path(@customer.id)
-#     end
-#   end
 
    private
    def customer_params

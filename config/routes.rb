@@ -17,7 +17,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create]
   #resources :orders, only: [:index]
   end
-  get'public/customers/confirm' => 'public/customers/confirm'
+
+  get '/pulic/customers/:id/unsubscribe' => 'public#customers#unsubscribe', as: 'unsubscribe'
+  # 論理削除用のルーティング
+  patch '/public/customers/:id/withdrawal' => 'public#customers#withdrawal', as: 'withdrawal'
 
   scope module: :admin do
   resources :items, only: [:show,:edit,:update,:index]
