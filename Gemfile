@@ -59,3 +59,5 @@ gem 'devise'
 gem 'pry-rails'
 gem "image_processing"
 gem "mini_magick"
+gem 'kaminari','~> 1.2.1'
+

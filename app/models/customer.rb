@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
   has_many :shipping, dependent: :destroy
 
   validates :first_name, presence: true
@@ -13,4 +14,5 @@ class Customer < ApplicationRecord
 
   validates :first_name_kana, :last_name_kana, presence: true, format: { with: /\A([ァ-ン]|ー)+\z/, message: "is must NOT contain any other characters than alphanumerics." }
   validates :postal_code, format: { with: /\A\d{7}\z/ }
+
 end

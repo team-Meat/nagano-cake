@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   belongs_to :genre
   has_many :item_carts, dependent: :destroy
   has_many :customers, through: :inside_carts
