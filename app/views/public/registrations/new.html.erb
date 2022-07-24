@@ -28,7 +28,7 @@
   <div class="row">
     <label class="col-lg-3">メールアドレス</label>
     <div class="col-lg-3">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",  placeholder: "(sample@example.com)" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",  placeholder: "sample@example.com" %>
     </div>
   </div><br>
 
@@ -76,9 +76,9 @@
       </div>
 
 
-    <h3>既に登録済みの方</h3>
+   <h3>既に登録済みの方</h3>
     <div class="col-sm-3">
-        <%= link_to "こちら", new_session_path(resource_name) %>
+      <%= link_to "こちら", new_customer_session_path %>
   からログインしてください
     </div>
     <% end %>
