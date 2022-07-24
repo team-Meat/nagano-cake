@@ -26,9 +26,9 @@ scope module: :public do
 end
 
 #admin
-namespace :admin do
-  root :to =>"homes#top"
-end
+# namespace :admin do
+#   root :to =>"homes#top"
+# end
 
 
 scope module: :public do
