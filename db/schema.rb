@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_22_094132) do
+ActiveRecord::Schema.define(version: 2022_07_23_110212) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -87,12 +87,23 @@ ActiveRecord::Schema.define(version: 2022_07_22_094132) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "item_orders", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "quantity", null: false
+    t.integer "once_price", null: false
+    t.integer "item_order_status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_orders_on_item_id"
+    t.index ["order_id"], name: "index_item_orders_on_order_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name", null: false
     t.integer "price", null: false
     t.text "explanation", null: false
-    t.string "image_id", null: false
     t.boolean "is_enabled", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -125,6 +136,9 @@ ActiveRecord::Schema.define(version: 2022_07_22_094132) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "item_orders", "items"
+  add_foreign_key "item_orders", "orders"
+
   add_foreign_key "items", "genres"
   add_foreign_key "shippings", "publics"
 end

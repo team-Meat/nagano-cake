@@ -11,8 +11,8 @@
     <% end %>
     <div class="col-xs-5">
     	<div class="field">
-            <%= attachment_image_tag(@item, :image, size: "300x217", fallback: "no_image.jpg") %>
-            <%= f.attachment_field :image %>
+            <%= image_tag @item.image %>
+            <%= f.file_field :image %>
     	</div>
     </div>
     <div class="col-xs-7">
