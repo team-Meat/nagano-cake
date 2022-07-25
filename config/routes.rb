@@ -18,14 +18,33 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
   end
 
-
-  namespace :admin do
-    root :to =>"homes#top"
+# 顧客用
+devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
 
     # ジャンル
     resources :genres, only: [:create, :index, :update, :edit]
 
-    # 会員
+
+
+scope module: :public do
+   root :to =>"homes#top"
+   # 配送先
+   resources :items, only: [:show, :index]
+   resources :shippings, only: [:index, :create, :edit, :update, :destroy]
+   resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+   resources :orders, only: [:new, :show, :index, :update, :destroy]
+end
+
+namespace :admin do
+  root :to =>"homes#top"
+
+   # ジャンル
+   resources :genres, only: [:create, :index, :update, :edit]
+
+   # 会員
     resources :customers, only: [:show, :index, :edit, :update, :destroy]
 
     # 注文
