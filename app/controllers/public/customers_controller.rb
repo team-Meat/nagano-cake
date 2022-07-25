@@ -19,9 +19,9 @@ class Public::CustomersController < ApplicationController
   #   end
   end
 
-  # private
-  # def user_params
-  #   params.require(:user).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:email,:postcode,:address,:phone_number,:is_deleted)
-  # end
-
+  private
+  def customer_params
+  	  params.require(:customer).permit(:is_enabled, :last_name, :first_name, :last_name_kana, :first_name_kana,
+  	                                   :phone_number, :email, :password, :post_code, :address)
+  end
 end
