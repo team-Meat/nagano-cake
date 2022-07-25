@@ -6,7 +6,11 @@
         <div class="btn-wrapper col-10 mx-auto">
           <div class="row">
            <%=link_to "注文履歴一覧", admin_orders_path %>
-
+           
+           <%= link_to admin_sign_out_path, method: :delete do %>
+          <% end %>
+          <span>ログアウト</span>
+          
           </div>
         </div>
     </div>
