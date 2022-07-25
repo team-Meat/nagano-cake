@@ -12,14 +12,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-
   # scope module: 'customers' do
   #   root 'items#top'
   #   resources :items, only: [:show, :index]
   #   get 'about' => 'items#about'
   # end
-
-
+  
 #cart_items
 scope module: :public do
    root to: 'homes#top'
@@ -30,16 +28,15 @@ scope module: :public do
 end
 
 namespace :admin do
-  root :to =>"homes#top"
-  delete "sign_out" => "admins#sign_out"
+  get '/' =>"homes#top"
    # ジャンル
    resources :genres, only: [:create, :index, :update, :edit]
    # 会員
-    resources :customers, only: [:show, :index, :edit, :update, :destroy]
+   resources :customers, only: [:show, :index, :edit, :update, :destroy]
    # 注文
    resources :orders, only: [:show, :index, :update, :destroy]
    # 商品
-    resources :items, only: [:new, :show, :create, :edit, :index, :update]
+   resources :items, only: [:new, :show, :create, :edit, :index, :update]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
