@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 # 顧客用
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -38,4 +37,19 @@ namespace :admin do
 
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  scope module: :public do
+  resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
+  #resources :orders, only: [:index]
+  end
+  get'public/customers/confirm' => 'public/customers/confirm'
+
+  scope module: :admin do
+  resources :items, only: [:show,:edit,:update,:index]
+  end
+   get'public/homes/top'
+   get'public/homes/about'
+
+
+
 end
