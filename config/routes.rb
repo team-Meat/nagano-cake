@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -39,9 +40,9 @@ Rails.application.routes.draw do
     #resources :orders, only: [:index]
   end
   get 'public/customers/confirm'
-  get '/public/customers/:id/unsubscribe' => 'public#customers#unsubscribe', as: 'unsubscribe'
+  get 'public/customers/:id/unsubscribe' => 'public/customers#unsubscribe', as: 'unsubscribe'
   # 論理削除用のルーティング
-  patch '/public/customers/:id/withdrawal' => 'public#customers#withdrawal', as: 'withdrawal'
+  patch '/public/customers/:id/withdrawal' => 'public/customers#withdrawal', as: 'withdrawal'
 
   scope module: :admin do
     resources :items, only: [:show,:edit,:update,:index]

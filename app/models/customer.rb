@@ -16,8 +16,8 @@ class Customer < ApplicationRecord
   validates :first_name_kana, :last_name_kana, presence: true, format: { with: /\A([ァ-ン]|ー)+\z/, message: "is must NOT contain any other characters than alphanumerics." }
   validates :postcode, format: { with: /\A\d{7}\z/ }
 
-  def active_for_authentication?
-    super && (delete == false)
-  end
+  # def active_for_authentication?
+  #   super && (is_deleted == false)
+  # end
 
 end
