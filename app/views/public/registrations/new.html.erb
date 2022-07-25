@@ -4,7 +4,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
 
-<<<<<<< HEAD
      <div class="row">
         <label class="col-lg-3">名前</label>
         <div class="col-lg-3">
@@ -14,13 +13,6 @@
           <%= f.text_field :first_name,autoforcus: true, autocomplete: "first_name",  placeholder: "(名)" %>
         </div>
       </div><br>
-=======
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  
->>>>>>> origin/develop
 
       <div class="row">
         <label class="col-lg-3">フリガナ</label>

@@ -14,10 +14,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 
 scope module: :public do
+   root :to =>"homes#top"
    # 配送先
    resources :items, only: [:show, :index]
    resources :shippings, only: [:index, :create, :edit, :update, :destroy]
    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+   resources :orders, only: [:new, :show, :index, :update, :destroy]
 end
 
 namespace :admin do
