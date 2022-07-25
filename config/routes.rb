@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'searches/search'
+  end
   devise_for :users
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
