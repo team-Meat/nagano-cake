@@ -1,0 +1,36 @@
+<div class="row">
+    <h2>商品新規登録</h2>
+        <div class="col-xs-7">
+              <%= form_with(model: @item, url: admin_items_path, method: :post, local: true) do |f| %>
+              <div class="field">
+               <%= f.file_field :image, placeholder: "商品画像" %>
+             </div>
+            <div class="field">
+               <%= f.label :商品名 %>
+               <%= f.text_field :name, class: "form" %>
+            </div>
+            <div class="field">
+              <%= f.label :商品説明 %>
+              <%= f.text_area :explanation %>
+            </div>
+            <div class="field">
+              <%= f.label :ジャンル %>
+              <%= f.collection_select(:genre_id, Genre.where(is_enabled: true), :id, :name, prompt: "選択してください") %>
+            </div>
+            <div class="field">
+            	<%= f.label :税抜価格 %>
+            	<%= f.text_field :price %>
+            	円
+            </div>
+            <div class="field">
+                <%= f.radio_button :is_enabled, true %>
+                <%= f.label :is_enabled, "販売中" %>
+                <%= f.radio_button :is_enabled, false %>
+                <%= f.label :is_enabled, "売切れ" %>
+            </div>
+            <div class="actions row">
+              <%= f.submit "新規登録" %>
+            </div>
+            <% end %>
+        </div>
+</div>
