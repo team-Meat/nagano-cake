@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
   end
 
+
   namespace :admin do
     root :to =>"homes#top"
 
