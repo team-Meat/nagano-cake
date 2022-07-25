@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
+    root :to =>"homes#top"
     # 配送先
     resources :items, only: [:show, :index]
     resources :shippings, only: [:index, :create, :edit, :update, :destroy]
@@ -34,11 +35,11 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   scope module: :public do
-    resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create]
+    resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create,:confirm]
     #resources :orders, only: [:index]
   end
-
-  get '/pulic/customers/:id/unsubscribe' => 'public#customers#unsubscribe', as: 'unsubscribe'
+  get 'public/customers/confirm'
+  get '/public/customers/:id/unsubscribe' => 'public#customers#unsubscribe', as: 'unsubscribe'
   # 論理削除用のルーティング
   patch '/public/customers/:id/withdrawal' => 'public#customers#withdrawal', as: 'withdrawal'
 

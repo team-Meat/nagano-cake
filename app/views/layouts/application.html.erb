@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,32 +14,68 @@
   <header class="navbar navbar-fixed-top">
     <div class="container">
       <% if customer_signed_in? %><%# 会員がログインしている時 %>
-        <li class="nav-item">
-          <%= link_to customer_path(current_customer),class: 'text-light' do %>
-            マイページ
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to destroy_customer_session_path,method: :delete, class: 'text-light' do %>
-            ログアウト
-          <% end %>
-        </li>
+
+        <nav class="nav navbar-brand navbar-left header-logo">
+
+          <%= link_to "ながのCAKE",customer_root_path %>
+
+          </nav>
+
+          <nav class="nav navbar-nav">
+
+          <span class="customer-name login-customer-name">
+
+          <%= current_customer.first_name %><%= current_customer.last_name %>
+
+          </span>
+
+          </nav>
+
+          <nav>
+
+          <ul class="nav navbar-nav navbar-right">
+
+          <li class="">
+
+          <%= link_to "マイページ", customer_path(current_customer) %>
+
+          </li>
+
+          <li>
+
+          <%= link_to "商品一覧", products_path %>
+
+          </li>
+
+          <li>
+
+          <%= link_to "カート", item_carts_path %>
+
+          </li>
+
+          <li>
+
+          <%= button_to "ログアウト", destroy_customer_session_path, method: :delete %>
+
+          </li>
+
+          </ul>
+
+          </nav>
+
       <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
         <%= render 'layouts/header_admin' %>
       <% else %><%# それ以外の時 %>
         <li class="nav-item">
-          <%= link_to new_customer_session_path,class: 'text-light' do %>
-            ログイン
-          <% end %>
+          <%= link_to "ログイン",customer_path %>
         </li>
         <li class="nav-item">
-          <%= link_to new_customer_registration_path,class: 'text-light' do %>
-            会員登録
-          <% end %>
+          <%= link_to "会員登録", new_customer_registration_path(current_customer %>
         </li>
         <%# TODO: 会員と管理者のリンクが混じっているので修正↓ %>
         <%#= render 'layouts/header_logout' %>
       <% end %>
+
     </div>
   </header>
 
@@ -55,3 +92,4 @@
   </main>
 </body>
 </html>
+
