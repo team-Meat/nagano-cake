@@ -32,14 +32,29 @@ Rails.application.routes.draw do
   get'public/homes/top'
   get'public/homes/about'
 
+  # scope module: 'customers' do
+  #   root 'items#top'
+  #   resources :items, only: [:show, :index]
+  #   get 'about' => 'items#about'
+  # end
+  
+#cart_items
+scope module: :public do
+   root to: 'homes#top'
+   # 配送先
+   resources :items, only: [:show, :index]
+   resources :shippings, only: [:index, :create, :edit, :update, :destroy]
+   resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+end
+
 
 namespace :admin do
   root :to =>"homes#top"
 
    # ジャンル
    resources :genres, only: [:create, :index, :update, :edit]
-
    # 会員
+
     resources :customers, only: [:show, :index, :edit, :update, :destroy]
 
     # 注文
@@ -49,3 +64,4 @@ namespace :admin do
     resources :items, only: [:new, :show, :create, :edit, :index, :update]
   end
 end  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
