@@ -16,7 +16,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 scope module: :public do
    root :to =>"homes#top"
-   
+
    # 商品
    resources :items, only: [:show, :index]
    # 配送先
@@ -27,6 +27,7 @@ end
 
 namespace :admin do
   root :to =>"homes#top"
+
 
    # ジャンル
    resources :genres, only: [:create, :index, :update, :edit]
