@@ -15,9 +15,13 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 
 scope module: :public do
-   # 配送先
+   root :to =>"homes#top"
+   
+   # 商品
    resources :items, only: [:show, :index]
+   # 配送先
    resources :shippings, only: [:index, :create, :edit, :update, :destroy]
+   # カート
    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
 end
 

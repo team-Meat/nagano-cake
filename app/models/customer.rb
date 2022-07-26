@@ -5,7 +5,11 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :shipping, dependent: :destroy
+  has_many :shippings, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+  has_many :items, through: :cart_items
+  has_many :orders, dependent: :destroy
+
 
   validates :first_name, presence: true
   validates :last_name, presence: true
