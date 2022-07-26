@@ -24,49 +24,70 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
+ <div class="search_form">
+   <%= form_with url: public_searches_search_path, local:true, method: :get do |f| %>
+    <%= f.text_field :word %>
+    <%= f.select :range, options_for_select(['Item']) %>
+    <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward_match"],["後方一致","backwarad_match"],["部分一致","partial_match"]]) %>
+    <%= f.submit "検索",class: "btn btn-primary" %>
+   <% end %>
+ </div>
+
       <% if customer_signed_in? %><%# 会員がログインしている時 %>
-        <%= render 'public/layouts/search' %>
-        <li class="nav-item">
+
           <span class="customer-name login-customer-name">
-          <%= current_customer.first_name %><%= current_customer.last_name %><label>様</label>
+          <%= current_customer.last_name %><%= current_customer.first_name %><label>様</label>
           </span>
 
-        <%= link_to root_path(current_customer),class: 'text-light' do %>
+         <%= link_to root_path(current_customer),class: 'text-light' do %>
         <i class="fas fa-home"></i>
          トップ
         <% end %>
+
 
         <%= link_to customer_path(current_customer),class: 'text-light' do %>
         <i class="fas fa-user"></i>
         マイページ
         <% end %>
 
+        <%= link_to cart_items_path,class: 'text-light' do %>
+         <i class="fas fa-cart-plus"></i>
+         カート
+         <% end %>
+
         <%= link_to  items_path,class: 'text-light' do %>
         <i class="fas fa-birthday-cake"></i>
         商品一覧
         <% end %>
 
-         <%= link_to cart_items_path,class: 'text-light' do %>
-         <i class="fas fa-cart-plus"></i>
-         カート
-         <% end %>
 
-         <%= link_to destroy_customer_session_path, method: :delete, class: 'text-light'  do %>
-         <i class="fas fa-sign-out-alt"></i>
-         ログアウト
-         <% end %>
+        <%= button_to "ログアウト", destroy_customer_session_path, method: :delete %>
 
         <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
         <%= render 'layouts/header_admin' %>
         <% else %><%# それ以外の時 %>
-        <li class="nav-item">
-          <%= link_to "ログイン",new_customer_session_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "会員登録",new_customer_registration_path %>
-        </li>
+
+         <%= link_to root_path(current_customer),class: 'text-light' do %>
+        <i class="fas fa-home"></i>
+         トップ
+        <% end %>
+
+        <%= link_to "ログイン",new_customer_session_path %>
+
+
+        <%=link_to"会員登録",new_customer_registration_path %>
+
         <%# TODO: 会員と管理者のリンクが混じっているので修正↓ %>
-        <%#= render 'layouts/header_logout' %>
+
+        <%= link_to  items_path,class: 'text-light' do %>
+        <i class="fas fa-birthday-cake"></i>
+        商品一覧
+        <% end %>
+
+         <%= link_to new_admin_session_path, class: 'text-light'  do %>
+        管理者ログイン
+        <% end %>
+
       <% end %>
     </div>
   </header>

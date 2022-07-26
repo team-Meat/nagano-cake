@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :public do
     get 'searches/search'
   end
-  devise_for :users
+
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -37,16 +37,6 @@ Rails.application.routes.draw do
   #   resources :items, only: [:show, :index]
   #   get 'about' => 'items#about'
   # end
-  
-#cart_items
-scope module: :public do
-   root to: 'homes#top'
-   # 配送先
-   resources :items, only: [:show, :index]
-   resources :shippings, only: [:index, :create, :edit, :update, :destroy]
-   resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
-end
-
 
 namespace :admin do
   root :to =>"homes#top"
