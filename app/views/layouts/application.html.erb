@@ -11,18 +11,53 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 <body>
-  <header class="navbar navbar-fixed-top">
+  <header class="navbar navbar-expand-lg navbar-warning bg-warning">
     <div class="container">
+     <a class = "navbar-brand" href ="/",>
+        <span>ながのCAKE</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+
       <% if customer_signed_in? %><%# 会員がログインしている時 %>
+        <%#= render 'public/layouts/search' %>
         <li class="nav-item">
-          <%= link_to"マイページ",customer_path(current_customer) %>
-        </li>
-        <li class="nav-item">
-          <%= link_to"ログアウト", destroy_customer_session_path,method: :delete %>
-        </li>
-      <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
+          <span class="customer-name login-customer-name">
+          <%= current_customer.first_name %><%= current_customer.last_name %><label>様</label>
+          </span>
+
+        <%= link_to root_path(current_customer),class: 'text-light' do %>
+        <i class="fas fa-home"></i>
+         トップ
+        <% end %>
+
+        <%= link_to customer_path(current_customer),class: 'text-light' do %>
+        <i class="fas fa-user"></i>
+        マイページ
+        <% end %>
+
+        <%= link_to  items_path,class: 'text-light' do %>
+        <i class="fas fa-birthday-cake"></i>
+        商品一覧
+        <% end %>
+
+         <%= link_to cart_items_path,class: 'text-light' do %>
+         <i class="fas fa-cart-plus"></i>
+         カート
+         <% end %>
+
+         <%= link_to destroy_customer_session_path, method: :delete, class: 'text-light'  do %>
+         <i class="fas fa-sign-out-alt"></i>
+         ログアウト
+         <% end %>
+
+        <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
         <%= render 'layouts/header_admin' %>
-      <% else %><%# それ以外の時 %>
+        <% else %><%# それ以外の時 %>
         <li class="nav-item">
           <%= link_to "ログイン",new_customer_session_path %>
         </li>

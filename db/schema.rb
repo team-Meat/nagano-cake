@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 2022_07_23_110212) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
-
   add_foreign_key "items", "genres"
   add_foreign_key "shippings", "publics"
 end

@@ -54,8 +54,6 @@
       <label for ="is_deleted">会員ステータス</label>
       <p>会員</p>
     </div>
-
-    <p><%= f.submit '登録',class: "btn btn-secondary" %></p>
     <% end %>
 
 
@@ -63,9 +61,7 @@
 
     <%= link_to unsubscribe_path(@customer.id),class:"btn btn-outline-secondary " do %>
     はい
-    <% end
-
-
+    <% end %>
     <%= link_to customer_path,class:"btn btn-outline-secondary " do %>
     いいえ
     <% end %>
