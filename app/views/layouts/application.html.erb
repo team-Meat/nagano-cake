@@ -24,7 +24,7 @@
             <ul class="navbar-nav ml-auto">
 
       <% if customer_signed_in? %><%# 会員がログインしている時 %>
-        <%#= render 'public/layouts/search' %>
+        <%= render 'public/layouts/search' %>
         <li class="nav-item">
           <span class="customer-name login-customer-name">
           <%= current_customer.first_name %><%= current_customer.last_name %><label>様</label>
