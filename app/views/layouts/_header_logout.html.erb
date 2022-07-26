@@ -19,5 +19,8 @@
     <li>
       <%= link_to "管理者ログイン",new_admin_session_path  %>
     </li>
+    <% if admin_signed_in? %>
+      <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
+    <% end %>
   </ul>
 </nav>

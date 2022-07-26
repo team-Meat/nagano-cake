@@ -5,8 +5,7 @@ class CreateCartItems < ActiveRecord::Migration[6.1]
       t.integer :item_id
       t.integer :customer_id
       t.integer :quantity
-      #t.datetime :created_at
-      #t.datetime :update_at
+      
       t.timestamps
       
     end

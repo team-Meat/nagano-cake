@@ -1,9 +1,10 @@
 class Public::CartItemsController < ApplicationController
     def index
-        #@cart_items = current_customer.cart_items
-        #あとカートの合計額を足したい
+        @cart_items = CartItem.all
+        #カートの合計額を足したい
+        @total_price = @cart_items.sum{|cart_item|cart_item.item.price_without_tax * cart_item.quantity * 1.1}
     end
-    
+
     # 削除や個数を変更した際にカート商品を再計算
     def update
         @cart_item = CartItem.find(params[:id])
@@ -28,12 +29,23 @@ class Public::CartItemsController < ApplicationController
     end
 
     def create
+        @cart_item = CartItem.new(cart_item_params)
+        @cart_item.customer_id = current_customer.id
+        @cart_item.item_id = params[:item_id]
+
+         if @cart_item.save
+           flash[:notice] = "#{@cart_item.item.name}をカートに追加しました"
+          redirect_to customers_cart_items_path
+         else
+        #     flash[:alert] = "個数を選択してください"
+            render "public/items/show"
+         end
     end
-    
+
     private
 
       def cart_item_params
         params.require(:cart_item).permit(:quantity, :item_id, :customer_id)
       end
-    
+
 end
