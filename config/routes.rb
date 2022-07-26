@@ -27,6 +27,7 @@ scope module: :public do
    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
 end
 
+
 namespace :admin do
   get '/' =>"homes#top"
    # ジャンル
@@ -39,7 +40,6 @@ namespace :admin do
    resources :items, only: [:new, :show, :create, :edit, :index, :update]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
 
 end
 
