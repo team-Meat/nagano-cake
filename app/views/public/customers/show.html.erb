@@ -1,19 +1,52 @@
-<h1>マイページ</h1>
-<h2>登録情報</h2>
-<table class="table">
-  <tbody>
-  <tr><th>姓</th><th><% customer_url %></th><th>名</th><th><% customer_url %></th></tr>
-  <tr><th>セイ</th><th><% customer_url %></th><th>メイ</th><th><% customer_url %></th></tr>
-  <tr><th>郵便番号</th><th><% customer_url %></th><th></th><th></th></tr>
-  <tr><th>住所</th><th><% customer_url %></th><th></th><th></th></tr>
-  <tr><th>電話番号</th><th><% customer_url %></th><th></th><th></th></tr>
-  <tr><th>メールアドレス</th><th><% customer_url %></th><th></th><th></th></tr>
-  <tr><th>パスワード</th><th><% customer_url %></th><th></th><th></th></tr>
-  <tr><th>会員ステータス</th><th><% customer_url %></th><th></th><th></th></tr>
-  </tbody>
-</table>
-<%= link_to edit_customer_path,class:"btn btn-outline-secondary btn-block" do %>
-編集
+<p id ="notice"></p>
+  <div class ="container px-5 px-sm-3">
+   <div class = "row">
+    <div class ="col-md-5">
+    <h2>登録情報</h2>
+    <table class="table">
+      <tbody>
+      <tr><th>名前</th><th><%= @customer.last_name %></th><th></th><th><%= @customer.first_name %></th><th></th></tr>
+      <tr><th>フリガナ</th><th><%= @customer.last_name_kana %></th><th></th><th><%= @customer.first_name_kana %></th><th></th></tr>
+      <tr><th>郵便番号</th><th><%= @customer.postcode %></th><th></th><th></th><th></th></tr>
+      <tr><th>住所</th><th><%= @customer.address %></th><th></th><th></th><th></th></tr>
+      <tr><th>電話番号</th><th><%= @customer.phone_number %></th><th></th><th></th><th></th></tr>
+      <tr><th>メールアドレス</th><th><%= @customer.email %></th><th></th><th></th><th></th></tr>
+      <tr><th>会員ステータス</th><th>会員</th><th></th><th></th><th></th></tr>
+      </tbody>
+    </table>
 
-
-<% end %>
+      <%= link_to edit_customer_path(@customer.id),class:"btn btn-secondary " do %>
+       編集
+      <% end %>
+     </div>
+    <div class ="col-md-6 offset-md-1">
+      <h2>注文履歴一覧</h2>
+      <table class="table table-bordered table-condensed">
+		<tr>
+			<th>注文日</th>
+			<th class="col-xs-3">配送日</th>
+			<th class="col-xs-2">注文商品</th>
+			<th class="col-xs-1">支払料金</th>
+			<th class="col-xs-2">ステータス</th>
+			<th class="col-xs-2">注文詳細</th>
+		</tr>
+		<% @orders.each do |order|%>
+		<tr>
+			<td class="col-xs-3"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+			<td class="col-xs-2"><%= order.post_code %>
+				<%= order.address %>
+				<%= order.name %>
+			</td>
+			<td class="col-xs-1">
+				<% order.order_details.each do |order_detail| %>
+				<%= order_detail.item.name %><br>
+			<% end %>
+			</td>
+			<td class="col-xs-2"><%= order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+			<td class="col-xs-2"><%= order.order_status %></td>
+			<td><%= link_to "表示する", customers_order_path(order), class: "btn btn-primary" %></td>
+		</tr>
+		<% end %>
+    </div>
+  </div>
+  </div>

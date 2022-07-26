@@ -1,9 +1,9 @@
 <div class ="container">
   <div class ="row">
     <div class ="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-<h2>登録情報</h2>
-<%= form_with model: @customer,url: customer_path(current_customer) ,method: :patch do |f| %>
 
+<h3>登録情報</h3>
+<%= form_with model: @customer,url: customer_path(@customer.id) ,method: :patch do |f| %>
 
     <div class ="form-group">
      <label for ="last_name">姓</label>
@@ -15,19 +15,15 @@
      <p><%= f.text_field :first_name %></p>
     </div>
 
-
-
      <div class ="form-group">
       <label for ="last_name_kana">セイ</label>
-      <p><%= f.text_field :last_name_kana %></p>
+      <p><%= f.text_field :first_name_kana %></p>
      </div>
 
      <div class ="form-group">
       <label for ="last_name_kana">メイ</label>
       <p><%= f.text_field :last_name_kana %></p>
      </div>
-
-
 
     <div class ="form-group">
       <label for ="email">email</label>
@@ -38,29 +34,30 @@
       <label for ="postcode">郵便番号</label>
       <p><%= f.text_field :postcode %></p>
     </div>
-
-
+    
     <div class ="form-group">
       <label for ="address">住所</label>
       <p><%= f.text_field :address %></p>
     </div>
 
     <div class ="form-group">
-      <label for ="is_deleted">会員ステータス</label>
-      <p><%= f.text_field :is_deleted %></p>
+      <label for ="phone_number">電話番号</label>
+      <p><%= f.text_field :phone_number %></p>
     </div>
 
-    <p><%= f.submit '登録',class: "btn btn-secondary" %></p>
+
+    <div class ="form-group">
+      <label for ="is_deleted">会員ステータス</label>
+      <p>会員</p>
+    </div>
     <% end %>
 
+    <p>退会しますか？</p>
 
-   <h3>退会しますか？</h3>
-
-    <%= link_to public_customers_confirm_path,class:"btn btn-outline-secondary btn-block" do %>
+    <%= link_to unsubscribe_path(@customer.id),class:"btn btn-outline-secondary " do %>
     はい
     <% end %>
-
-    <%= link_to customer_path,class:"btn btn-outline-secondary btn-block" do %>
+    <%= link_to customer_path,class:"btn btn-outline-secondary " do %>
     いいえ
     <% end %>
   </div>
