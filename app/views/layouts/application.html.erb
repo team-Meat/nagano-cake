@@ -28,7 +28,7 @@
         <%#= render 'public/layouts/search' %>
         <li class="nav-item">
           <span class="customer-name login-customer-name">
-          <%= current_customer.first_name %><%= current_customer.last_name %><label>様</label>
+          <%= current_customer.last_name %><%= current_customer.first_name %><label>様</label>
           </span>
 
         <%= link_to root_path(current_customer),class: 'text-light' do %>
@@ -50,14 +50,14 @@
          <i class="fas fa-cart-plus"></i>
          カート
          <% end %>
-
-         <%= link_to destroy_customer_session_path, method: :delete, class: 'text-light'  do %>
-         <i class="fas fa-sign-out-alt"></i>
-         ログアウト
-         <% end %>
+         
+         <%= button_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'text-light' %>
+         
+        <!--<i class="fas fa-sign-out-alt"></i>-->
+         <!--<%# end %>-->
 
         <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
-        <%= render 'layouts/header_admin' %>
+          <%= render 'layouts/header_admin' %>
         <% else %><%# それ以外の時 %>
         <li class="nav-item">
           <%= link_to "ログイン",new_customer_session_path %>
