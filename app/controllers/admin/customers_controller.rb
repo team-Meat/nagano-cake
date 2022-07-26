@@ -24,9 +24,23 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
+  def confirm
+      #@customer = Customer.find(params[:id])
+  end
+
+  def withdrawal
+    @customer = Customer.find(params[:id])
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @customer.update(delete: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to public_homes_top_path
+  end
+
+
   private
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :phone_number, :postal_code, :street_address, :deleted_at)
+    params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :phone_number, :postcode, :address,:email,:delete)
   end
 end
