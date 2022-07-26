@@ -1,5 +1,5 @@
 <nav class="nav navbar-brand navbar-left">
-  <%= link_to "ログアウト", admin_root_path %>
+  <%= link_to "ながのCAKE", root_path %>
 </nav>
 <nav class="nav navbar-nav">
   <span class="adjust">
@@ -19,5 +19,8 @@
     <li>
       <%= link_to "管理者ログイン",new_admin_session_path  %>
     </li>
+    <% if admin_signed_in? %>
+      <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
+    <% end %>
   </ul>
 </nav>
