@@ -17,7 +17,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item = CartItem.find(params[:id])
         @cart_item.destroy
         flash.now[:alert] = "#{@cart_item.item.name}を削除しました"
-        redirect_to customers_cart_items_path
+        redirect_to cart_items_path
     end
 
     #全削除
@@ -25,7 +25,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item = current_customer.cart_items
         @cart_item.destroy_all
         flash[:alert] = "カートの商品を全て削除しました"
-        redirect_to customers_cart_items_path
+        redirect_to customers_path
     end
 
     def create
