@@ -1,80 +1,45 @@
-<div class="container my-5">
-  <div class="row">
-    <div class="offset-1">
-      <%= flash[:order_new] %>
-      <h2 class="red-border px-3">購入情報入力</h2>
-    </div>
-  </div>
+<body>
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+	<h2><span class="label label-default">注文情報入力</span></h2>
+	</div>
+	<div class="panel-body">
 
-  <div class="row mt-5">
-    <div class="offset-2 col-5">
+  <%= form_with model: @order, url: orders_confirm_path, method: :post, local: true do |f| %>
+	<%= f.label :payment, "支払い方法" %>
+	<br>
+	<%= f.radio_button :payment,:クレジットカード,  checked: "checked" %>
+	<%= f.label :payment, "クレジットカード" %>
+	<br>
+	<%= f.radio_button :payment, :銀行振込 %>
+	<%= f.label :payment, "銀行振込" %>
+	<br>
 
-<!-- 支払い方法選択 -->
-      <div class="row">
-        <strong class="red-border px-3">お支払い方法</strong>
-      </div>
+	<%= f.label :address, "お届け先" %>
+	<br>
 
-      <%= form_tag(orders_path, method: :post) do %>
-        <div class="form-check mt-3">
-          <%= radio_button_tag :payment, :クレジットカード %>
-          <%= label_tag :payment, "クレジットカード", {value: :"クレジットカード", style: "display: inline-block;"} %><br>
-          <%= radio_button_tag :payment, :銀行振込 %>
-          <%= label_tag :payment, "銀行振込", {value: :"銀行振込", style: "display: inline-block;"} %>
-        </div>
+	<%= f.radio_button :address_option, 0, checked: "checked" %>
+	<%= f.label :order_address, "ご自身の住所" %>
+	<%= @customer.postcode %>
+	<%= @customer.address %>
+	<br>
+	<%= f.radio_button :address_option, 1 %>
+	<%= f.label :order_address, "登録済住所から選択" %>
+	<%= f.collection_select :registered, @addresses, :id, :address, :include_blank => "選択してください" %>
 
-<!-- お届け先選択 -->
-        <div class="row mt-3">
-          <strong class="red-border px-3">お届け先</strong>
-        </div>
+	<br>
+	<%= f.radio_button :address_option, 2 %>
+	<%= f.label :order_address, "新しいお届け先" %>
+	<br>
 
-        <div class="form-check mt-3">
-          <% address = current_customer.post_code + current_customer.address + current_customer.last_name + current_customer.first_name %>
-          <%= radio_button_tag :select, :my_address %>
-          <%= label_tag :select, "ご自身の住所", {value: :my_address, style: "display: inline-block;"} %>
-          <%= address %><br>
-          <%= radio_button_tag :select, :select_address %>
-          <%= select_tag :address, options_for_select(@ship_addresses.map do |ship|
-          ["〒" + ship.post_code + "  " + ship.address + "  " + ship.last_name + ship.first_name, ship.id]
-            end), {include_blank: '配送先を選択'} %>
-        </div>
+	<%= f.label :postal_code, "郵便番号" %>
+	<%= f.text_field :postal_code %>
+	<br>
 
-        <div class="row mt-5">
-          <%= submit_tag "確認画面へ進む", class: "btn btn-outline-danger ml-auto" %>
-        </div>
-      <% end %>
+	<%= f.label :order_address, "住所" %>
+	<%= f.text_field :order_address %>
+	<br>
 
+	<%= f.submit "確認画面へ進む" , class:"btn btn-primary" %>
 
-    </div>
-
-    <div class=" offset-1 col-3">
-
-<!-- 新しいお届け先 -->
-      <div class="row">
-        <strong class="red-border px-3">新しいお届け先を登録する</strong>
-      </div>
-
-        <%= form_for(@ship_address, url:orders_create_ship_address_path) do |f| %>
-
-        <div class="form-group row mt-3">
-          <%= f.text_field :post_code, placeholder: "郵便番号", class: "form-control offset-1 col-10" %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.text_field :address, placeholder: "住所", class: "form-control offset-1 col-10" %>
-        </div>
-
-        <div class="form-group row">
-          <%= f.text_field :last_name, placeholder:"姓", class: "form-control offset-1 col-5" %>
-          <%= f.text_field :first_name, placeholder:"名", class: "form-control col-5" %>
-        </div>
-
-        <div class="row">
-          <%= f.submit '確認画面に', class: "btn btn-sm btn-outline-danger ml-auto" %>
-        </div>
-
-        <% end %>
-    </div>
-
-
-  </div>
-</div>
+<% end %>

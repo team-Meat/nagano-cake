@@ -111,7 +111,8 @@ ActiveRecord::Schema.define(version: 2022_07_23_110212) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.integer "customer_id"
+    t.integer "shipping_id"
     t.string "receive_name", null: false
     t.string "postal_code", null: false
     t.string "street_address", null: false
@@ -121,16 +122,17 @@ ActiveRecord::Schema.define(version: 2022_07_23_110212) do
     t.integer "order_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "shippings", force: :cascade do |t|
+    t.integer "customer_id"
     t.integer "public_id"
     t.string "receive_name", null: false
     t.string "postal_code", null: false
     t.string "street_address", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_shippings_on_customer_id"
     t.index ["public_id"], name: "index_shippings_on_public_id"
   end
 
@@ -139,5 +141,6 @@ ActiveRecord::Schema.define(version: 2022_07_23_110212) do
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
   add_foreign_key "items", "genres"
+  add_foreign_key "shippings", "customers"
   add_foreign_key "shippings", "publics"
 end
