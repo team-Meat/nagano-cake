@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :orders, only: [:new, :show, :index, :update, :destroy]
     resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create,:confirm]
-    resources :name_addresses,only: [:show,:index,:edit,:update,:destroy]
+    resources :name_addresses,only: [:show,:index,:edit,:update,:destroy,:create]
     get 'searches/search'
   end
     # ジャンル
