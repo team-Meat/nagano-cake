@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
 # 顧客用
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -11,6 +12,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+  # scope module: 'customers' do
+  #   root 'items#top'
+  #   resources :items, only: [:show, :index]
+  #   get 'about' => 'items#about'
+  # end
 
 
 scope module: :public do
@@ -31,8 +37,8 @@ namespace :admin do
 
    # ジャンル
    resources :genres, only: [:create, :index, :update, :edit]
-
    # 会員
+
     resources :customers, only: [:show, :index, :edit, :update, :destroy]
 
    # 注文
@@ -48,6 +54,7 @@ end
   resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
   #resources :orders, only: [:index]
   end
+<<<<<<< HEAD
   get'public/customers/confirm' => 'public/customers/confirm'
 
   scope module: :admin do
@@ -59,3 +66,8 @@ end
 
 
 end
+=======
+end  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+
+>>>>>>> develop

@@ -2,6 +2,7 @@
 
 class Admin::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+
   protected
 
   # 会員の論理削除のための記述。退会後は、同じアカウントでは利用できない。
@@ -17,6 +18,7 @@ class Admin::SessionsController < Devise::SessionsController
     end
   end
 end
+
   # GET /resource/sign_in
   # def new
   #   super
@@ -38,3 +40,4 @@ end
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
