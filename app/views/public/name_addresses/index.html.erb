@@ -1,0 +1,49 @@
+<p id ="notice"></p>
+  <div class ="container px-5 px-sm-3">
+   <div class = "row">
+    <div class ="col-md-12">
+     <h4>配送先一覧/新規登録</h4>
+     <%= form_with model: @name_address,url: name_addresses_path(@customer_id) ,method: :patch do |f| %>
+　　　<div class="row">
+        <label class="col-lg-3">郵便番号（ハイフンなし）</label>
+        <div class="col-lg-3">
+          <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode",  placeholder: "0000000" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-lg-3">住所</label>
+        <div class="col-lg-3">
+          <%= f.text_field :address, autofocus: true, autocomplete: "address",　placeholder: "東京都渋谷区代々木神園町0-0" %>
+        </div>
+      </div>
+
+      <div class="row">
+      　<label class="col-lg-3">宛先</label>
+        <div class="col-lg-3">
+          <%= f.text_field :address_name,autoforcus: true, autocomplete: "address_name",  placeholder: "(姓名)" %>
+        </div>
+      </div>
+
+       <div class="actions">
+        <%= f.submit "保存" %>
+       </div>
+      <% end %>
+        
+        
+     <h4>一覧</h4>
+     <table class="table">
+     <% @name_address.each do |name_address| %>
+      <tbody>
+      <tr><th>住所</th><th><%= name_address.address %></th></tr>
+      <tr><th>名前</th><th><%= name_address.name_address %></th></tr>
+      </tbody>
+
+     <% end %>
+     </table>
+
+
+
+    </div>
+   </div>
+  </div>

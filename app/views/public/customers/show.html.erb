@@ -3,6 +3,9 @@
    <div class = "row">
     <div class ="col-md-5">
     <h2>登録情報</h2>
+    <%= link_to edit_customer_path(@customer.id),class:"btn btn-secondary " do %>
+       編集
+      <% end %>
     <table class="table">
       <tbody>
       <tr><th>名前</th><th><%= @customer.last_name %></th><th></th><th><%= @customer.first_name %></th><th></th></tr>
@@ -15,44 +18,17 @@
       </tbody>
     </table>
 
-    <h2>追加配達先</h2>
-
-
-
-
-      <%= link_to edit_customer_path(@customer.id),class:"btn btn-secondary " do %>
-       編集・配達先追加
-      <% end %>
-      <h2>支払い方法</h2>
-        <%= check_box_tag :test1 %>
-        <%= label_tag :test1, "銀行振込" %>
-        <%= check_box_tag :test1 %>
-        <%= label_tag :test1, "クレジットカード" %>
-        <%#= link_to "支払いに進む", customers_order_path(order), class: "btn btn-primary" %>
      </div>
     <div class ="col-md-6 offset-md-1">
-      <h2>注文履歴一覧</h2>
-      <table class="table table-bordered table-condensed">
-		<tr>
-			<th>注文日</th>
-			<th class="col-xs-3">配送日</th>
-			<th class="col-xs-2">注文商品</th>
-			<th class="col-xs-1">支払料金</th>
-			<th class="col-xs-2">ステータス</th>
-			<th class="col-xs-2">注文詳細</th>
-		</tr>
-		<% @orders.each do |order|%>
-		<tr>
-			<td class="col-xs-3"><%= order.created_at.strftime('%Y/%m/%d') %></td>
-			<td class="col-xs-2"><%= order.post_code %>
-				<%= order.address %>
-				<%= order.name %>
-			</td>
-			<td class="col-xs-2"><%= order.total_payment.to_s(:delimited, delimiter: ',') %></td>
-			<td class="col-xs-2"><%= order.order_status %></td>
-			<td><%= link_to "表示する", customers_order_path(order), class: "btn btn-primary" %></td>
-		</tr>
-		<% end %>
+     <h4>配送先</h4>
+      <%= link_to name_address_path(@customer.id),class:"btn btn-secondary " do %>
+       一覧を見る
+      <% end %>
+      <h4>注文履歴</h4>
+       <%= link_to orders_path(@customer.id),class:"btn btn-secondary " do %>
+       一覧を見る
+
+      <% end %>
     </div>
   </div>
   </div>

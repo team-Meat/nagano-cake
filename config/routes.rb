@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'searches/search'
-  end
 
   # 顧客用
   devise_for :customers,skip: [:passwords], controllers: {
@@ -21,6 +18,8 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
     resources :orders, only: [:new, :show, :index, :update, :destroy]
     resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create,:confirm]
+    resources :name_addresses,only: [:show,:index,:edit,:update,:destroy]
+    get 'searches/search'
   end
     # ジャンル
     resources :genres, only: [:create, :index, :update, :edit]
