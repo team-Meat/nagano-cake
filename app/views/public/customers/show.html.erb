@@ -15,9 +15,20 @@
       </tbody>
     </table>
 
+    <h2>追加配達先</h2>
+
+
+
+
       <%= link_to edit_customer_path(@customer.id),class:"btn btn-secondary " do %>
-       編集
+       編集・配達先追加
       <% end %>
+      <h2>支払い方法</h2>
+        <%= check_box_tag :test1 %>
+        <%= label_tag :test1, "銀行振込" %>
+        <%= check_box_tag :test1 %>
+        <%= label_tag :test1, "クレジットカード" %>
+        <%#= link_to "支払いに進む", customers_order_path(order), class: "btn btn-primary" %>
      </div>
     <div class ="col-md-6 offset-md-1">
       <h2>注文履歴一覧</h2>
@@ -33,18 +44,13 @@
 		<% @orders.each do |order|%>
 		<tr>
 			<td class="col-xs-3"><%= order.created_at.strftime('%Y/%m/%d') %></td>
-			<td class="col-xs-2"><%= order.post_code %>
-				<%= order.address %>
-				<%= order.name %>
+			<td class="col-xs-2"><%= order.postal_code %>
+				<%= order.street_address %>
+				<%= order.receive_name %>
 			</td>
-			<td class="col-xs-1">
-				<% order.order_details.each do |order_detail| %>
-				<%= order_detail.item.name %><br>
-			<% end %>
-			</td>
-			<td class="col-xs-2"><%= order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+			<td class="col-xs-2"><%= order.total_price.to_s(:delimited, delimiter: ',') %></td>
 			<td class="col-xs-2"><%= order.order_status %></td>
-			<td><%= link_to "表示する", customers_order_path(order), class: "btn btn-primary" %></td>
+			<td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
 		</tr>
 		<% end %>
     </div>
