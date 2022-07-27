@@ -35,12 +35,12 @@
       <div class="offset-6">
 
         <div class="row">
-          <%= form_with model: @cart_item url:cart_items_path do |f| %>
+          <%= form_with model: @cart_item, url: cart_items_path do |f| %>
            <%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
            <span>個</span>
             <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.submit "カートに入れる", class: "btn btn-outline-danger" %>
-      　　<% end %>
+          <% end %>
         </div>
 
         <div class="row">

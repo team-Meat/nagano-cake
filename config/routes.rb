@@ -15,13 +15,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 scope module: :public do
    root :to =>"homes#top"
-   # 配送先
+   get '/complete' => 'orders#complete' #注文完了ページ
    resources :items, only: [:show, :index]
    resources :shippings, only: [:index, :create, :edit, :update, :destroy]
    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
    resources :orders, only: [:new, :show, :index, :confirm, :update, :destroy]
    post '/orders/confirm' => 'orders#confirm', as: 'orders_confirm' #購入確認画面への遷移
    get '/orders/create_order' => 'orders#create_order' #購入確定のアクション
+   post '/orders/create_shipping' => 'orders#create_shipping' #情報入力画面での配送先登録用のアクション
+  delete '/cart_items' => 'cart_items#destroy_all' #カートアイテムを全て削除
 end
 
 namespace :admin do
