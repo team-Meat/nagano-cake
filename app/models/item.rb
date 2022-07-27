@@ -1,5 +1,9 @@
 class Item < ApplicationRecord
 
+  def taxin_price
+        price*1.1
+  end
+
   belongs_to :genre
   has_many :item_carts, dependent: :destroy
   has_many :customers, through: :inside_carts
