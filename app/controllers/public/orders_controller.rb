@@ -1,9 +1,9 @@
 class Public::OrdersController < ApplicationController
 
   def new
-@order = Order.new
+    @order = Order.new
 		@customer = current_customer
-		@addresses = ShippingAddress.where(customer_id: current_customer.id)
+		@shippings = Shipping.where(customer_id: current_customer.id)
   end
 
   def confirm
