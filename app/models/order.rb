@@ -2,9 +2,10 @@ class Order < ApplicationRecord
   has_many :item_orders, dependent: :destroy
   belongs_to :customer
 
-  def subtotal
+  def sum_of_price 
     item.taxin_price * quantity
   end
+  
   enum payment: {
     "クレジットカード" => 0,
     "銀行振込" => 1,
@@ -16,4 +17,5 @@ class Order < ApplicationRecord
     "発送準備中" => 3,
     "発送済み" => 4,
   }
+
 end
