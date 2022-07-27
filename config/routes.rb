@@ -12,24 +12,18 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
-  # scope module: 'customers' do
-  #   root 'items#top'
-  #   resources :items, only: [:show, :index]
-  #   get 'about' => 'items#about'
-  # end
-
-
 scope module: :public do
    root :to =>"homes#top"
    get '/complete' => 'orders#complete' #注文完了ページ
+   post '/orders/confirm' => 'orders#confirm', as: 'orders_confirm' #購入確認画面への遷移
+   get '/orders/create_order' => 'orders#create_order' #購入確定のアクション
    resources :items, only: [:show, :index]
    resources :shippings, only: [:index, :create, :edit, :update, :destroy]
    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
    resources :orders, only: [:new, :show, :index, :confirm, :update, :destroy]
-   post '/orders/confirm' => 'orders#confirm', as: 'orders_confirm' #購入確認画面への遷移
-   get '/orders/create_order' => 'orders#create_order' #購入確定のアクション
    post '/orders/create_shipping' => 'orders#create_shipping' #情報入力画面での配送先登録用のアクション
   delete '/cart_items' => 'cart_items#destroy_all' #カートアイテムを全て削除
+  get 'searches/search'
 end
 
 namespace :admin do
@@ -48,26 +42,11 @@ namespace :admin do
     resources :items, only: [:new, :show, :create, :edit, :index, :update]
 
 end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   scope module: :public do
   resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
   #resources :orders, only: [:index]
   end
-<<<<<<< HEAD
-  get'public/customers/confirm' => 'public/customers/confirm'
-
-  scope module: :admin do
-  resources :items, only: [:show,:edit,:update,:index]
-  end
-   get'public/homes/top'
-   get'public/homes/about'
-
-
-
 end
-=======
-end  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 
->>>>>>> develop

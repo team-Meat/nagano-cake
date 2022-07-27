@@ -2,6 +2,10 @@ class Order < ApplicationRecord
   has_many :item_orders, dependent: :destroy
   belongs_to :customer
 
+  def sum_of_price
+    item.taxin_price * quantity
+  end
+
   def subtotal
     item.taxin_price * quantity
   end
