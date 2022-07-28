@@ -44,13 +44,13 @@
 		<% @orders.each do |order|%>
 		<tr>
 			<td class="col-xs-3"><%= order.created_at.strftime('%Y/%m/%d') %></td>
-			<td class="col-xs-2"><%= order.post_code %>
-				<%= order.address %>
-				<%= order.name %>
+			<td class="col-xs-2"><%= order.postal_code %>
+				<%= order.street_address %>
+				<%= order.receive_name %>
 			</td>
-			<td class="col-xs-2"><%= order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+			<td class="col-xs-2"><%= order.total_price.to_s(:delimited, delimiter: ',') %></td>
 			<td class="col-xs-2"><%= order.order_status %></td>
-			<td><%= link_to "表示する", customers_order_path(order), class: "btn btn-primary" %></td>
+			<td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
 		</tr>
 		<% end %>
     </div>

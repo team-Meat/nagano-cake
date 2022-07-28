@@ -18,6 +18,12 @@ class Item < ApplicationRecord
   validates :price, presence: true, format: {
     with: /\A[0-9]+\z/i,
   }
+  
+  #平塚追記
+  def with_tax_price
+    (price * 1.1).floor
+  end
+  
 
   # def self.looks(search,word)
   #   if search == "perfect_match"
