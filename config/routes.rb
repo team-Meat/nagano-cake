@@ -37,19 +37,8 @@ resources :orders, only: [:show, :index, :update, :destroy]
 resources :items, only: [:new, :show, :create, :edit, :index, :update]
 end
 
-<<<<<<< HEAD
-  scope module: :public do
-  resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
-  #resources :orders, only: [:index]
-  end
-end
-
-
-=======
-
 scope module: :public do
 resources :customers, only: [:show,:edit,:update,:confirm,:withdraw]
 #resources :orders, only: [:index]
 end
 end
->>>>>>> origin/develop
