@@ -41,19 +41,19 @@ def confirm
   @addresses = Shipping.where(customer_id: current_customer.id)
   @cart_items = current_customer.cart_items.all
   @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
-  if params[:order][:street_address] == "1"
+  if params[:order][:address_option] == "1"
     @order.street_address = current_customer.address
     @order.receive_name = current_customer.last_name + current_customer.first_name
-  elsif params[:order][:street_address] == "2"
+  elsif params[:order][:address_option] == "2"
     if Address.exists?(name: params[:order][:registered])
       @order.name = Address.find(params[:order][:registered]).name
       @order.address = Address.find(params[:order][:registered]).address
     else
       render :new
     end
-  elsif params[:order][:street_address] == "3"
-    address_new = current_customer.addresses.new(address_params)
-    if address_new.save 
+  elsif params[:order][:address_option] == "3"
+    shipping_new = current_customer.shippings.new(shipping_params)
+    if shipping_new.save 
     else
       render :new
     end
@@ -119,10 +119,10 @@ end
 
   private
   def order_params
-  	  params.require(:order).permit(:customer_id, :shipping_id, :receive_name, :postal_code, :street_address, :postal_code, :payment, :total_price, :order_status)
+  	  params.require(:order).permit(:customer_id, :shipping_id, :receive_name, :postal_code, :street_address, :payment, :total_price, :order_status)
   end
 
   def shipping_params
-     params.require(:shipping).permit(:customer_id,:last_name, :first_name, :postcode, :address)
+   params.require(:order).permit(:postal_code, :street_address)
   end
 end
