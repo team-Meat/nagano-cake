@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   # @search_items = @search.result
- #   def after_sign_in_path_for(resource)
+  #   def after_sign_in_path_for(resource)
   #       public_homes_top_path
   #   end
 
