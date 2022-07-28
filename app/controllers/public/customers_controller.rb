@@ -28,11 +28,19 @@ class Public::CustomersController < ApplicationController
 
 
    def withdrawal
-       @customer = current_customer
+        @customer = current_customer
         @customer.update(is_deleted: false)
         reset_session
-        flash[:notice] = "退会処理を実行いたしました"
-        redirect_to public_homes_top_path
+        flash[:notice] = "The withdrawal process was successful"
+        redirect_to root_path
+
+   end
+
+   def destroy
+       @customer = Customer.find(params[:id])
+       @customer.destroy  # データ（レコード）を削除
+        redirect_to customesrs_path(@customer.id),notice:"You have updated user successfully."
+
    end
 
    private

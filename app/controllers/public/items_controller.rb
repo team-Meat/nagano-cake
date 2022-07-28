@@ -10,6 +10,9 @@ class Public::ItemsController < ApplicationController
     @cart_item = CartItem.new
   end
 
+  def create
+  end
+
   private
   def item_params
   	  params.require(:item).permit(:genre_id, :name, :price, :explanation)

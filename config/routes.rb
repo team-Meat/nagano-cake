@@ -58,8 +58,7 @@ resources :items, only: [:new, :show, :create, :edit, :index, :update]
 end
 
 
-<<<<<<< HEAD
+
+
 end
-=======
-end
->>>>>>> origin/develop
+
