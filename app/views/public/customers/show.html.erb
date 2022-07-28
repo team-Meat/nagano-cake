@@ -3,7 +3,10 @@
    <div class = "row">
     <div class ="col-md-5">
     <h2>登録情報</h2>
-    <table class="table">
+       <%= link_to edit_customer_path(@customer.id),class:"btn btn-secondary " do %>
+       編集
+       <% end %>
+      <table class="table">
       <tbody>
       <tr><th>名前</th><th><%= @customer.last_name %></th><th></th><th><%= @customer.first_name %></th><th></th></tr>
       <tr><th>フリガナ</th><th><%= @customer.last_name_kana %></th><th></th><th><%= @customer.first_name_kana %></th><th></th></tr>
@@ -13,24 +16,21 @@
       <tr><th>メールアドレス</th><th><%= @customer.email %></th><th></th><th></th><th></th></tr>
       <tr><th>会員ステータス</th><th>会員</th><th></th><th></th><th></th></tr>
       </tbody>
-    </table>
+      </table>
 
-    <h2>追加配達先</h2>
-
-
-
-
-      <%= link_to edit_customer_path(@customer.id),class:"btn btn-secondary " do %>
-       編集・配達先追加
-      <% end %>
-      <h2>支払い方法</h2>
-        <%= check_box_tag :test1 %>
-        <%= label_tag :test1, "銀行振込" %>
-        <%= check_box_tag :test1 %>
-        <%= label_tag :test1, "クレジットカード" %>
-        <%#= link_to "支払いに進む", customers_order_path(order), class: "btn btn-primary" %>
      </div>
     <div class ="col-md-6 offset-md-1">
+
+     <h4>配送先</h4>
+      <%= link_to name_addresses_path(@customer.id),class:"btn btn-secondary " do %>
+       一覧を見る
+      <% end %>
+      <h4>注文履歴</h4>
+       <%= link_to orders_path(@customer.id),class:"btn btn-secondary " do %>
+       一覧を見る
+      <% end %>
+
+
       <h2>注文履歴一覧</h2>
       <table class="table table-bordered table-condensed">
 		<tr>
@@ -53,6 +53,7 @@
 			<td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
 		</tr>
 		<% end %>
+
     </div>
   </div>
   </div>

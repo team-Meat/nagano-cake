@@ -21,10 +21,7 @@ class Public::SessionsController < Devise::SessionsController
 #   # def new
 #   #   super
 #   # end
-def after_sign_out_path_for(resource)
-    public_customers_confirm_path
-    #public_homes_top_path
-end
+
 #   # POST /resource/sign_in
 #   # def create
 #   #   super

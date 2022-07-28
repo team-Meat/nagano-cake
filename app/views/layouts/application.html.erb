@@ -3,16 +3,17 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
 <body>
-  <header class="navbar navbar-expand-lg navbar-warning bg-warning">
+  <header class="navbar navbar-expand-lg navbar-warning bg-warning" >
+   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
      <a class = "navbar-brand" href ="/",>
         <span>ながのCAKE</span>
@@ -24,6 +25,8 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
+
+
  <div class="search_form">
    <%= form_with url: searches_search_path, local:true, method: :get do |f| %>
     <%= f.text_field :word %>
@@ -33,6 +36,7 @@
    <% end %>
  </div>
 
+
       <% if customer_signed_in? %><%# 会員がログインしている時 %>
 
           <span class="customer-name login-customer-name">
@@ -40,9 +44,9 @@
           </span>
 
          <%= link_to root_path(current_customer),class: 'text-light' do %>
-        <i class="fas fa-home"></i>
+         <i class="fas fa-home"></i>
          トップ
-        <% end %>
+         <% end %>
 
 
         <%= link_to customer_path(current_customer),class: 'text-light' do %>
@@ -59,11 +63,14 @@
          <i class="fas fa-cart-plus"></i>
          カート
          <% end %>
-         
-         <%= button_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'text-light' %>
-         
-        <!--<i class="fas fa-sign-out-alt"></i>-->
-         <!--<%# end %>-->
+
+
+        <%= link_to homes_about_path,class: 'text-light' do %>
+         <i class="fas fa-address-card"></i>
+         アバウト
+         <% end %>
+
+        <%= button_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'text-light' %>
 
         <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
           <%= render 'layouts/header_admin' %>
@@ -74,10 +81,15 @@
          トップ
         <% end %>
 
-        <%= link_to "ログイン",new_customer_session_path %>
+        <%= link_to new_customer_session_path,class: 'text-light' do %>
+        <i class="fas fa-sign-in-alt"></i>
+        ログイン
+        <% end %>
 
-
-        <%=link_to"会員登録",new_customer_registration_path %>
+        <%=link_to new_customer_registration_path,class: 'text-light' do %>
+        <i class="fas fa-user-check"></i>
+        新規登録
+        <% end %>
 
         <%# TODO: 会員と管理者のリンクが混じっているので修正↓ %>
 
@@ -86,12 +98,19 @@
         商品一覧
         <% end %>
 
+        <%= link_to homes_about_path,class: 'text-light' do %>
+         <i class="fas fa-address-card"></i>
+         アバウト
+         <% end %>
+
          <%= link_to new_admin_session_path, class: 'text-light'  do %>
-        管理者ログイン
-        <% end %>
+         <i class="far fa-user"></i>
+         管理者ログイン
+         <% end %>
 
       <% end %>
     </div>
+   </nav>
   </header>
 
   <main>

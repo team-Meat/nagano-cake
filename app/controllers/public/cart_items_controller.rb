@@ -4,7 +4,7 @@ class Public::CartItemsController < ApplicationController
         #カートの合計額を足したい
         @total_price = @cart_items.sum(&:subtotal)
     end
-    
+
     # 削除や個数を変更した際にカート商品を再計算
     def update
         @cart_item = CartItem.find(params[:id])
@@ -42,11 +42,11 @@ class Public::CartItemsController < ApplicationController
             render "public/items/show"
         end
     end
-    
+
     private
 
       def cart_item_params
         params.require(:cart_item).permit(:quantity, :item_id)
       end
-    
+
 end
