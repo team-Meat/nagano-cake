@@ -69,7 +69,7 @@ end
 
   private
   def order_params
-  	  params.require(:order).permit(:customer_id, :shipping_id, :receive_name, :postal_code, :street_address, :postal_code, :payment, :total_price, :order_status)
+  	  params.require(:order).permit(:customer_id, :shipping_id, :receive_name, :postal_code, :street_address, :payment, :total_price, :order_status)
   end
 
   def shipping_params
