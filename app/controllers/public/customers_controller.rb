@@ -2,7 +2,12 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer =current_customer
+
+    @orders = Order.where(customer_id:current_customer)
+    @name_address =NameAddress.where(customer_id:current_customer)
+
     @orders = @customer.orders
+
   end
 
   def edit
@@ -32,7 +37,7 @@ class Public::CustomersController < ApplicationController
 
    private
    def customer_params
-     params.require(:customer).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:email,:postcode,:address,:phone_number,:other_last_name,:other_first_name,:other_last_name_kana,:other_first_name_kana,:other_email,:other_postcode,:other_address,:other_phone_number)
+     params.require(:customer).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:email,:postcode,:address,:phone_number)
    end
 
 end
