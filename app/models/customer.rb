@@ -4,10 +4,18 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+<<<<<<< HEAD
   has_many :shippings, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :items, through: :cart_items
   has_many :orders, dependent: :destroy
+=======
+         has_many :cart_items, dependent: :destroy
+         has_many :orders, dependent: :destroy
+
+         has_many :shipping_addresses, dependent: :destroy
+         has_many :name_addresses, dependent: :destroy
+>>>>>>> origin/develop
 
   validates :address, presence: true
   validates :phone_number, format: { with: /\A\d{10,11}\z/ }

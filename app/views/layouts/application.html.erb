@@ -25,6 +25,8 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
+
+
  <div class="search_form">
    <%= form_with url: searches_search_path, local:true, method: :get do |f| %>
     <%= f.text_field :word %>
@@ -34,6 +36,7 @@
    <% end %>
  </div>
 
+
       <% if customer_signed_in? %><%# 会員がログインしている時 %>
 
           <span class="customer-name login-customer-name">
@@ -41,9 +44,9 @@
           </span>
 
          <%= link_to root_path(current_customer),class: 'text-light' do %>
-        <i class="fas fa-home"></i>
+         <i class="fas fa-home"></i>
          トップ
-        <% end %>
+         <% end %>
 
 
         <%= link_to customer_path(current_customer),class: 'text-light' do %>
@@ -56,6 +59,14 @@
         商品一覧
         <% end %>
 
+
+        <%= link_to  homes_about_path,class: 'text-light' do %>
+        <i class="fas fa-birthday-cake"></i>
+        アバウト
+        <% end %>
+
+
+       
          <%= link_to cart_items_path,class: 'text-light' do %>
          <i class="fas fa-cart-plus"></i>
          カート
@@ -66,9 +77,11 @@
         <!--<i class="fas fa-sign-out-alt"></i>-->
          <!--<%# end %>-->
 
+
         <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
           <%= render 'layouts/header_admin' %>
         <% else %><%# それ以外の時 %>
+<<<<<<< HEAD
           <li class="nav-item">
            <%= link_to "商品一覧", admin_items_path %>
           </li>
@@ -82,6 +95,33 @@
            <%= link_to "管理者ログイン",new_admin_session_path  %>
           </li>
         <%# TODO: 会員と管理者のリンクが混じっているので修正↓ %>
+=======
+
+         <%= link_to root_path(current_customer),class: 'text-light' do %>
+        <i class="fas fa-home"></i>
+         トップ
+        <% end %>
+
+        <%= link_to new_customer_session_path,class: 'text-light' do %>
+        <i class="fas fa-sign-in-alt"></i>
+        ログイン
+        <% end %>
+
+        <%=link_to"会員登録",new_customer_registration_path %>
+
+        <%# TODO: 会員と管理者のリンクが混じっているので修正↓ %>
+
+        <%= link_to  items_path,class: 'text-light' do %>
+        <i class="fas fa-birthday-cake"></i>
+        商品一覧
+        <% end %>
+
+         <%= link_to new_admin_session_path, class: 'text-light'  do %>
+         <i class="far fa-user"></i>
+         管理者ログイン
+         <% end %>
+
+>>>>>>> origin/develop
       <% end %>
     </div>
    </nav>
