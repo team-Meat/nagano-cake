@@ -12,11 +12,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 sessions: "admin/sessions"
 }
 
-# scope module: 'customers' do
-# root 'items#top'
-# resources :items, only: [:show, :index]
-# get 'about' => 'items#about'
-# end
 scope module: :public do
 root :to =>"homes#top"
 get '/complete' => 'orders#complete' #注文完了ページ
@@ -51,6 +46,5 @@ resources :orders, only: [:show, :index, :update, :destroy]
 # 商品
 resources :items, only: [:new, :show, :create, :edit, :index, :update]
 end
+end
 
-
-end 
