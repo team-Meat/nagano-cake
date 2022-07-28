@@ -47,9 +47,9 @@ def confirm
     @order.receive_name = current_customer.last_name + current_customer.first_name
 
   elsif params[:order][:address_option] == "2"
-    if Address.exists?(name: params[:order][:registered])
-      @order.receive_name = Address.find(params[:order][:registered]).name
-      @order.street_address = Address.find(params[:order][:registered]).address
+    if Shipping.exists?(receive_name: params[:order][:registered])
+      @order.receive_name = Shipping.find(params[:order][:registered]).name
+      @order.street_address = Shipping.find(params[:order][:registered]).address
     else
       render :new
     end
