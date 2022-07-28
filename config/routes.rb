@@ -42,9 +42,10 @@ resources :genres, only: [:create, :index, :update, :edit]
 # 会員
 resources :customers, only: [:show, :index, :edit, :update, :destroy]
 # 注文
-resources :orders, only: [:show, :index, :update, :destroy]
+resources :orders, only: [:show, :index]
+patch "orders/order_status" => "orders#order_status_update"
+patch "orders/item_orders_status" => "orders#item_orders_status_update"
 # 商品
 resources :items, only: [:new, :show, :create, :edit, :index, :update]
 end
 end
-

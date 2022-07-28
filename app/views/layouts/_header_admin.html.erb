@@ -1,8 +1,5 @@
 <div class= "admin-header">
   <div class= "admin-nav-bars">
-      <nav class="nav navbar-brand navbar-left header-logo">
-      <%= link_to "ながのCAKE", admin_root_path %>
-    </nav>
     <nav class="nav navbar-nav">
       <span class="adjust">
       </span>
@@ -10,19 +7,22 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <%= link_to admin_items_path,class:"admin-nav-item" do %><i class="glyphicon glyphicon-user users"></i></br>商品一覧<% end %>
-        </li>
-        <li class="">
-          <%= link_to admin_customers_path,class:"admin-nav-item" do %><i class="glyphicon glyphicon-home home"></i></br>会員一覧<% end %>
+          <%= link_to "商品一覧", admin_items_path %>
         </li>
         <li>
-          <%= link_to admin_orders_path,class:"admin-nav-item" do %><i class="glyphicon glyphicon-book books"></i></br>注文履歴一覧<% end %>
+          <%= link_to "商品追加", new_admin_item_path %>
         </li>
         <li class="">
-          <%= link_to admin_genres_path,class:"admin-nav-item" do %><i class="glyphicon glyphicon-home home"></i></br>ジャンル一覧<% end %>
+          <%= link_to "会員一覧", admin_customers_path %>
         </li>
         <li>
-          <%= button_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          <%= link_to "注文履歴一覧", admin_orders_path %>
+        </li>
+        <li class="">
+          <%= link_to "ジャンル一覧", admin_genres_path %>
+        </li>
+        <li class="">
+          <%= button_to "ログアウト",  destroy_admin_session_path, method: :delete %>
         </li>
       </ul>
     </nav>
