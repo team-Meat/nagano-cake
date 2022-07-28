@@ -50,21 +50,23 @@
         マイページ
         <% end %>
 
-        <%= link_to cart_items_path,class: 'text-light' do %>
-         <i class="fas fa-cart-plus"></i>
-         カート
-         <% end %>
-
         <%= link_to  items_path,class: 'text-light' do %>
         <i class="fas fa-birthday-cake"></i>
         商品一覧
         <% end %>
 
-
-        <%= button_to "ログアウト", destroy_customer_session_path, method: :delete %>
+         <%= link_to cart_items_path,class: 'text-light' do %>
+         <i class="fas fa-cart-plus"></i>
+         カート
+         <% end %>
+         
+         <%= button_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'text-light' %>
+         
+        <!--<i class="fas fa-sign-out-alt"></i>-->
+         <!--<%# end %>-->
 
         <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
-        <%= render 'layouts/header_admin' %>
+          <%= render 'layouts/header_admin' %>
         <% else %><%# それ以外の時 %>
 
          <%= link_to root_path(current_customer),class: 'text-light' do %>
