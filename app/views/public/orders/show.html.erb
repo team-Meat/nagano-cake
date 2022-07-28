@@ -82,10 +82,10 @@
 				<% @item_orders.each do |d| %>
 				<tbody>
 					<tr class="brown-border">
-						<td><%= d.item_name %></td>
-						<td><%= (d.item_price * 1.1).floor %></td>
+						<td><%= d.item.name %></td>
+						<td><%= (d.once_price * 1.1).floor %></td>
 						<td><%= d.quantity %></td>
-						<td><%= ((d.item_price * d.quantity) * 1.1).floor %></td>
+						<td><%= ((d.once_price * d.quantity) * 1.1).floor %></td>
 					</tr>
 				</tbody>
 				<% end %>
