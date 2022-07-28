@@ -7,6 +7,7 @@ registrations: "public/registrations",
 sessions: 'public/sessions'
 }
 
+
 # 管理者用
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 sessions: "admin/sessions"
@@ -20,6 +21,10 @@ get '/orders/create_order' => 'orders#create_order' #購入確定のアクショ
 resources :items, only: [:show, :index]
 resources :shippings, only: [:index, :create, :edit, :update, :destroy]
 resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create,:confirm]
+resources :name_addresses,only: [:show,:index,:edit,:update,:destroy,:create]
+get 'searches/search'
+get 'homes/about'
 resources :orders, only: [:new, :show, :index, :confirm, :update, :destroy, :create]
 resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create,:confirm]
 resources :name_addresses,only: [:show,:index,:edit,:update,:destroy,:create]
@@ -48,4 +53,6 @@ patch "orders/item_orders_status" => "orders#item_orders_status_update"
 # 商品
 resources :items, only: [:new, :show, :create, :edit, :index, :update]
 end
+
 end
+
