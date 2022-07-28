@@ -24,14 +24,14 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
- <div class="search_form">
-   <%= form_with url: searches_search_path, local:true, method: :get do |f| %>
-    <%= f.text_field :word %>
-    <%= f.select :range, options_for_select(['Item']) %>
-    <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward_match"],["後方一致","backwarad_match"],["部分一致","partial_match"]]) %>
-    <%= f.submit "検索",class: "btn btn-primary" %>
-   <% end %>
- </div>
+         <div class="search_form">
+           <%= form_with url: searches_search_path, local:true, method: :get do |f| %>
+            <%= f.text_field :word %>
+            <%= f.select :range, options_for_select(['Item']) %>
+            <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward_match"],["後方一致","backwarad_match"],["部分一致","partial_match"]]) %>
+            <%= f.submit "検索",class: "btn btn-primary" %>
+           <% end %>
+         </div>
 
       <% if customer_signed_in? %><%# 会員がログインしている時 %>
 
@@ -40,9 +40,9 @@
           </span>
 
          <%= link_to root_path(current_customer),class: 'text-light' do %>
-        <i class="fas fa-home"></i>
+         <i class="fas fa-home"></i>
          トップ
-        <% end %>
+         <% end %>
 
 
         <%= link_to customer_path(current_customer),class: 'text-light' do %>
@@ -60,6 +60,11 @@
         商品一覧
         <% end %>
 
+        <%= link_to  homes_about_path,class: 'text-light' do %>
+        <i class="fas fa-birthday-cake"></i>
+        アバウト
+        <% end %>
+
 
         <%= button_to "ログアウト", destroy_customer_session_path, method: :delete %>
 
@@ -72,8 +77,10 @@
          トップ
         <% end %>
 
-        <%= link_to "ログイン",new_customer_session_path %>
-
+        <%= link_to new_customer_session_path,class: 'text-light' do %>
+        <i class="fas fa-sign-in-alt"></i>
+        ログイン
+        <% end %>
 
         <%=link_to"会員登録",new_customer_registration_path %>
 
@@ -85,8 +92,9 @@
         <% end %>
 
          <%= link_to new_admin_session_path, class: 'text-light'  do %>
-        管理者ログイン
-        <% end %>
+         <i class="far fa-user"></i>
+         管理者ログイン
+         <% end %>
 
       <% end %>
     </div>

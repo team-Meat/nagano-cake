@@ -1,29 +1,28 @@
-<%= form_with model: @name_address(@name_address),url: edit_name_address_path,method: :patch do |f| %>
+
 
 <div class ="container">
   <div class ="row">
   <div class ="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <%= form_with model: @name_address,url: name_address_path(@name_address.id),method: :patch do |f| %>
+
+    <div class ="form-group">
+      <label for ="postcode">郵便番号</label>
+      <p><%= f.text_field :postcode %></p>
+    </div>
+
+    <div class ="form-group">
+      <label for ="address">住所</label>
+      <p><%= f.text_field :address %></p>
+    </div>
+
+    <div class ="form-group">
+     <label for ="address_name">姓</label>
+     <p><%= f.text_field :address_name %></p>
+    </div>
 
 
-      <table class="table">
-      <tbody>
-      <tr><th>郵便番号</th><th><%= @name_address.postcode %></th></tr>
-      <tr><th>住所</th><th><%= @name_address.address %></th></tr>
-      <tr><th>名前</th><th><%= @name_address.address_name %></th></tr>
-      </tbody>
-      </table>
 
-    <div><%= f.submit '保存', class: "btn btn-success" %></div>
-
-    <% if @book.user == current_user %>
-    <td><%= link_to "Show",book_path(@book.id) %></td>
-    <td>|</td>
-    <td><%= link_to "Back",books_path(@book.id) %></td>
-    <% else %>
-    <td></td>
-    <td></td>
-
-    <% end %>
+    <div><%= f.submit '編集内容を保存', class: "btn btn-success" %></div>
     <% end %>
   </div>
   </div>

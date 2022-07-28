@@ -4,22 +4,22 @@
     <div class ="col-md-12">
      <h4>配送先一覧/新規登録</h4>
      <%= form_with model: @name_address,url: name_addresses_path,method: :post do |f| %>
-　　　<div class="row">
+       <div class="row">
         <label class="col-lg-3">郵便番号（ハイフンなし）</label>
         <div class="col-lg-3">
           <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode",  placeholder: "0000000" %>
         </div>
-      </div>
+       </div>
 
       <div class="row">
         <label class="col-lg-3">住所</label>
         <div class="col-lg-3">
-          <%= f.text_field :address, autofocus: true, autocomplete: "address",　placeholder: "東京都渋谷区代々木神園町0-0" %>
+          <%= f.text_field :address, autofocus: true, autocomplete: "address",placeholder: "東京都渋谷区代々木神園町0-0" %>
         </div>
       </div>
 
       <div class="row">
-      　<label class="col-lg-3">宛先</label>
+      <label class="col-lg-3">宛先</label>
         <div class="col-lg-3">
           <%= f.text_field :address_name,autoforcus: true, autocomplete: "address_name",  placeholder: "(姓名)" %>
         </div>
@@ -38,10 +38,10 @@
       <tbody>
       <tr><th>郵便番号</th><th><%= name_address.postcode %></th></tr>
       <tr><th>住所</th><th><%= name_address.address %></th></tr>
-      <tr><th>名前</th><th><%= name_address.address_name %></th></tr>
+      <tr><th>宛先</th><th><%= name_address.address_name %></th></tr>
       </tbody>
-      <td><%= link_to "Edit",edit_name_address_path(@name_address), class:"btn btn-success"%></td>
-      <td><%= link_to "Destroy",name_address_path(@name_address),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
+      <td><%= link_to "編集する",edit_name_address_path(name_address), class:"btn btn-success"%></td>
+      <td><%= link_to "削除する",name_address_path(name_address),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
 
       <% end %>
       </table>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show,:edit,:update,:destroy,:withdraw,:create,:confirm]
     resources :name_addresses,only: [:show,:index,:edit,:update,:destroy,:create]
     get 'searches/search'
+    get 'homes/about'
   end
     # ジャンル
     resources :genres, only: [:create, :index, :update, :edit]
