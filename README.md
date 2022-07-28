@@ -54,19 +54,19 @@
 ### インストール
 
 
-$ git clone git@github.com:team-Meat/nagano-cake.git
+ $ git clone git@github.com:team-Meat/nagano-cake.git
 
 
-$ cd nagano-cake
+ $ cd nagano-cake
 
 
-$ rails db:migrate
+ $ rails db:migrate
 
 
-$ rails db:seed
+ $ rails db:seed
 
 
-$ bundle install
+ $ bundle install
 
 
 
