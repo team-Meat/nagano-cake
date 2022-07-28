@@ -14,15 +14,15 @@ class Admin::CustomersController < ApplicationController
   end
 
   def update
-    @customer = Customer.find(params[:id])
-    if@customer.update(customer_params)
-    redirect_to customer_path(@customer.id),notice:"You have updated user successfully."
-    else
-    render:edit
-    end
+      @customer = Customer.find(params[:id])
+      if@customer.update(customer_params)
+      redirect_to customer_path(@customer.id),notice:"You have updated user successfully."
+      else
+      render:edit
+      end
 
     @customer = Customer.with_deleted.find(params[:id])
-    if @customer.update(customer_params)
+    if@customer.update(customer_params)
       flash[:success] = '編集しました'
       redirect_to admins_customer_path(@customer)
     else

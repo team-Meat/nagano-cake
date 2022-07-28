@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_23_110212) do
+ActiveRecord::Schema.define(version: 2022_07_28_074337) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -108,6 +108,15 @@ ActiveRecord::Schema.define(version: 2022_07_23_110212) do
     t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
+  create_table "name_addresses", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id"
+    t.string "address_name"
+    t.string "address"
+    t.string "postcode"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "shipping_id"
@@ -124,14 +133,12 @@ ActiveRecord::Schema.define(version: 2022_07_23_110212) do
 
   create_table "shippings", force: :cascade do |t|
     t.integer "customer_id"
-    t.integer "public_id"
     t.string "receive_name", null: false
     t.string "postal_code", null: false
     t.string "street_address", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_shippings_on_customer_id"
-    t.index ["public_id"], name: "index_shippings_on_public_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -140,5 +147,4 @@ ActiveRecord::Schema.define(version: 2022_07_23_110212) do
   add_foreign_key "item_orders", "orders"
   add_foreign_key "items", "genres"
   add_foreign_key "shippings", "customers"
-  add_foreign_key "shippings", "publics"
 end

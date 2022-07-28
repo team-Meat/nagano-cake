@@ -16,8 +16,8 @@
 				<tr>
 					<td><%= customer.id %></td>
 					<td style>
-						<%= link_to customer.first_name, admin_customer_path(customer.id)%>
-						<%= link_to customer.last_name, admin_customer_path(customer.id) %>
+						<%= link_to customer.last_name, admin_customer_path(customer.id)%>
+						<%= link_to customer.first_name, admin_customer_path(customer.id) %>
 					</td>
 	  				<td> <%= customer.email %></td>
 					<td><% if customer.delete == nil %>
