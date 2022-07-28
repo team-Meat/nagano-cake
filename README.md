@@ -54,7 +54,7 @@
 ### インストール
 
 
-$ git clone git@
+$ git clone git@github.com:team-Meat/nagano-cake.git
 
 
 $ cd nagano-cake
