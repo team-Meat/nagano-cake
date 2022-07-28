@@ -3,16 +3,17 @@
 <html>
   <head>
     <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
 <body>
-  <header class="navbar navbar-expand-lg navbar-warning bg-warning">
+  <header class="navbar navbar-expand-lg navbar-warning bg-warning" >
+   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
      <a class = "navbar-brand" href ="/",>
         <span>ながのCAKE</span>
@@ -109,6 +110,7 @@
 
       <% end %>
     </div>
+   </nav>
   </header>
 
   <main>

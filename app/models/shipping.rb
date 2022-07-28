@@ -1,6 +1,11 @@
 class Shipping < ApplicationRecord
   belongs_to :customer
 
+  def address_and_post
+    Shipping.street_address + '(' + Shipping.postal_code.to_s + ')'
+  end
+
+
   with_options presence: true do
     validates :receive_name
     validates :street_address

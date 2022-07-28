@@ -7,11 +7,9 @@ class Customer < ApplicationRecord
          has_many :cart_items, dependent: :destroy
          has_many :orders, dependent: :destroy
 
-         has_many :shipping_addresses, dependent: :destroy
+         has_many :shippings, dependent: :destroy
          has_many :name_addresses, dependent: :destroy
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
   validates :address, presence: true
   validates :phone_number, format: { with: /\A\d{10,11}\z/ }
 
