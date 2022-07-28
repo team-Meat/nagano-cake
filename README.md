@@ -1,24 +1,38 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+　nagano-cake
+________________________________________________________________
+≪ながのCAKE≫の商品を通販するためのECサイト。
 
-Things you may want to cover:
+概要
+Customer
 
-* Ruby version
+会員登録・編集・退会
+商品の閲覧・カートに入れる・注文
+ジャンル検索
+注文履歴の確認
+Admin
 
-* System dependencies
+ジャンル登録・編集・非表示選択
+商品の登録・編集・削除・非表示選択
+注文履歴の確認・進捗ステータスの変更
+会員情報の確認・編集
 
-* Configuration
+機能
+deviceを使用したログイン機能
+paranoiaを使用した論理削除の実装
+gemを使用せず顧客側、管理者側の双方実装
 
-* Database creation
+インストール
+$ git clone git@github.com:chibaragi/nagano-cake.git
+$ cd nagano-cake
+$ rails db:migrate
+$ rails db:seed
+$ bundle install
 
-* Database initialization
+使い方
+　管理者ログインはメールアドレスを【admin@admin】、パスワードは【testtest】で使用できます。 　顧客側の場合、新規作成で好きなアカウントを作成しても利用が可能です。
 
-* How to run the test suite
+バージョン
+　rails', '~> 6.1.4.1' 　ruby 2.6.3
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
