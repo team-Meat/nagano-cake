@@ -81,21 +81,6 @@
         <% elsif admin_signed_in? %><%# 管理者がログインしている時 %>
           <%= render 'layouts/header_admin' %>
         <% else %><%# それ以外の時 %>
-<<<<<<< HEAD
-          <li class="nav-item">
-           <%= link_to "商品一覧", admin_items_path %>
-          </li>
-          <li class="nav-item">
-           <%= link_to "ログイン",new_customer_session_path %>
-          </li>
-          <li class="nav-item">
-           <%= link_to "会員登録",new_customer_registration_path %>
-          </li>
-          <li class="nav-item">
-           <%= link_to "管理者ログイン",new_admin_session_path  %>
-          </li>
-        <%# TODO: 会員と管理者のリンクが混じっているので修正↓ %>
-=======
 
          <%= link_to root_path(current_customer),class: 'text-light' do %>
         <i class="fas fa-home"></i>
@@ -121,7 +106,6 @@
          管理者ログイン
          <% end %>
 
->>>>>>> origin/develop
       <% end %>
     </div>
    </nav>

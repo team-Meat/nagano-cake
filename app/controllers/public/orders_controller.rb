@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
   def new
 		@order = Order.new
 		@customer = current_customer
-		@shippings = Shipping.where(customer_id: current_customer.id)
+		@addresses = Shipping.where(customer_id: current_customer.id)
   end
 
   def index
