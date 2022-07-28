@@ -2,8 +2,12 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer =current_customer
+
     @orders = Order.where(customer_id:current_customer)
     @name_address =NameAddress.where(customer_id:current_customer)
+
+    @orders = @customer.orders
+
   end
 
   def edit

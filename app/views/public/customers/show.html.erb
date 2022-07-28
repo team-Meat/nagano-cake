@@ -20,6 +20,7 @@
 
      </div>
     <div class ="col-md-6 offset-md-1">
+
      <h4>配送先</h4>
       <%= link_to name_addresses_path(@customer.id),class:"btn btn-secondary " do %>
        一覧を見る
@@ -28,6 +29,30 @@
        <%= link_to orders_path(@customer.id),class:"btn btn-secondary " do %>
        一覧を見る
       <% end %>
+
+      <h2>注文履歴一覧</h2>
+      <table class="table table-bordered table-condensed">
+		<tr>
+			<th>注文日</th>
+			<th class="col-xs-3">配送日</th>
+			<th class="col-xs-2">注文商品</th>
+			<th class="col-xs-1">支払料金</th>
+			<th class="col-xs-2">ステータス</th>
+			<th class="col-xs-2">注文詳細</th>
+		</tr>
+		<% @orders.each do |order|%>
+		<tr>
+			<td class="col-xs-3"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+			<td class="col-xs-2"><%= order.postal_code %>
+				<%= order.street_address %>
+				<%= order.receive_name %>
+			</td>
+			<td class="col-xs-2"><%= order.total_price.to_s(:delimited, delimiter: ',') %></td>
+			<td class="col-xs-2"><%= order.order_status %></td>
+			<td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
+		</tr>
+		<% end %>
+
     </div>
   </div>
   </div>
